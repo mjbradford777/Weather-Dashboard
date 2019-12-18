@@ -35,7 +35,7 @@ $(document).ready(function() {
                 $('#city-name').text(`${response.name} (${moment().format('MMMM Do YYYY')})`);
                 icon = $('<img>').attr('src', `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`)
                 $('#top').append(icon);
-                paragraph = $('<p>').text(`Temperature: ${response.main.temp} ${'&#8457'}`);
+                paragraph = $('<p>').text(`Temperature: ${response.main.temp} F`);
                 $('#top').append(paragraph);
                 paragraph = $('<p>').text(`Humidity: ${response.main.humidity} %`);
                 $('#top').append(paragraph);
@@ -62,13 +62,13 @@ $(document).ready(function() {
                     function(response) {
                         console.log(response);
                         for (let i = 0; i < 5; i++) {
-                            card = $('<div>').attr('class', 'card');
+                            card = $('<div>').attr('class', 'card col-sm-2');
                             cardBody = $('<div>').attr('class', 'card-body');
                             bottomParagraph = $('<p>').text(moment().add((i + 1), 'days').calendar());
                             cardBody.append(bottomParagraph);
                             bottomIcon = $('<img>').attr('src', `http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png`);
                             cardBody.append(bottomIcon);
-                            bottomParagraph = $('<p>').text(`Temp: ${response.list[i].main.temp} &#8457`);
+                            bottomParagraph = $('<p>').text(`Temp: ${response.list[i].main.temp} F`);
                             cardBody.append(bottomParagraph);
                             bottomParagraph = $('<p>').text(`Humidity: ${response.list[i].main.humidity}%`);
                             cardBody.append(bottomParagraph);
