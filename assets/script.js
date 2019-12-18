@@ -1,6 +1,6 @@
 $(document).ready(function() {
     let queryURL = 'api.openweathermap.org/data/2.5/weather?q=';
-    let APIkey = '&APPID=83b81619b1ba1aed2a20cc81447476e3';
+    let APIkey = '&appid=83b81619b1ba1aed2a20cc81447476e3';
     let city;
 
     $('#search').on('click', function() {
@@ -17,7 +17,7 @@ $(document).ready(function() {
         // )
 
         $.ajax({
-            url: 'http://api.openweathermap.org/data/2.5/weather?q=London&APPID=83b81619b1ba1aed2a20cc81447476e3',
+            url: 'https://api.openweathermap.org/data/2.5/weather?q=London&appid=83b81619b1ba1aed2a20cc81447476e3',
             method: 'GET'
         }).then(
             function(response) {
