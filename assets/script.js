@@ -3,6 +3,7 @@ $(document).ready(function() {
     let uvQueryURL = 'http://api.openweathermap.org/data/2.5/uvi?appid=83b81619b1ba1aed2a20cc81447476e3&lat=';
     let forecastQueryURL = 'https://api.openweathermap.org/data/2.5/forecast?q=';
     let APIkey = '&appid=83b81619b1ba1aed2a20cc81447476e3';
+    let element;
     let city;
     let longitude;
     let latitude;
@@ -16,6 +17,13 @@ $(document).ready(function() {
 
     $('#search').on('click', function() {
         event.preventDefault();
+        $('#top').empty();
+        $('#bottom').empty();
+        element = $('<h2>').attr('id', 'city-name');
+        element.attr('class', 'display-4');
+        $('#top').append(element);
+        element = $('<h2>').attr('id', 'forecast');
+        $('#bottom').append(element);
         city = $('#input').val().trim();
         console.log(city);
         $.ajax({
@@ -27,7 +35,7 @@ $(document).ready(function() {
                 $('#city-name').text(`${response.name} (${moment().format('MMMM Do YYYY')})`);
                 icon = $('<img>').attr('src', `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`)
                 $('#top').append(icon);
-                paragraph = $('<p>').text(`Temperature: ${response.main.temp} &#8457`);
+                paragraph = $('<p>').text(`Temperature: ${response.main.temp} ${'&#8457'}`);
                 $('#top').append(paragraph);
                 paragraph = $('<p>').text(`Humidity: ${response.main.humidity} %`);
                 $('#top').append(paragraph);
