@@ -32,25 +32,42 @@ $(document).ready(function() {
                 console.log(response.sys.country);
                 console.log(typeof(response.sys.country));
                 code = response.sys.country;
+                $.ajax({
+                    url: uvQueryURL + latitude + '&lon=' + longitude,
+                    method: 'GET'
+                }).then(
+                    function(response) {
+                        console.log(response);
+                    }
+                );
+        
+                $.ajax({
+                    url: forecastQueryURL + city + ',' + code + APIkey,
+                    method: 'GET'
+                }).then(
+                    function(response) {
+                        console.log(response);
+                    }
+                );
             }
         );
 
-        $.ajax({
-            url: uvQueryURL + latitude + '&lon=' + longitude,
-            method: 'GET'
-        }).then(
-            function(response) {
-                console.log(response);
-            }
-        );
+        // $.ajax({
+        //     url: uvQueryURL + latitude + '&lon=' + longitude,
+        //     method: 'GET'
+        // }).then(
+        //     function(response) {
+        //         console.log(response);
+        //     }
+        // );
 
-        $.ajax({
-            url: forecastQueryURL + city + ',' + code + APIkey,
-            method: 'GET'
-        }).then(
-            function(response) {
-                console.log(response);
-            }
-        );
+        // $.ajax({
+        //     url: forecastQueryURL + city + ',' + code + APIkey,
+        //     method: 'GET'
+        // }).then(
+        //     function(response) {
+        //         console.log(response);
+        //     }
+        // );
     })
 })
