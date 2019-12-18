@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=';
+    let queryURL = 'api.openweathermap.org/data/2.5/weather?q=';
     let APIkey = '&appid=83b81619b1ba1aed2a20cc81447476e3';
     let city;
 
