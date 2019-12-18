@@ -7,30 +7,30 @@ $(document).ready(function() {
     let longitude;
     let latitude;
     let code;
+    let icon;
+    let paragraph;
 
     $('#search').on('click', function() {
         event.preventDefault();
         city = $('#input').val().trim();
         console.log(city);
         $.ajax({
-            url: cityQueryURL + city + APIkey,
+            url: cityQueryURL + city + '&units=imperial' + APIkey,
             method: 'GET'
         }).then(
             function(response) {
                 console.log(response);
-                console.log(response.name);
-                console.log(moment().format('MMMM Do YYYY'));
-                console.log(response.main.temp);
-                console.log(response.main.humidity);
-                console.log(response.wind.speed);
-                console.log(response.coord.lon);
-                console.log(typeof(response.coord.lon));
+                $('#city-name').text(`${response.name} ${moment().format('MMMM Do YYYY')}`);
+                icon = $('<img>').attr('src', `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`)
+                $('#top').append(icon);
+                paragraph = $('<p>').text(`Temperature: ${response.main.temp} &deg F`);
+                $('#top').append(paragraph);
+                paragraph = $('<p>').text(`Humidity: ${response.main.humidity} %`);
+                $('#top').append(paragraph);
+                paragraph = $('<p>').text(`Wind Speed: ${response.wind.speed} MPH`);
+                $('#top').append(paragraph);
                 longitude = response.coord.lon;
-                console.log(response.coord.lat);
-                console.log(typeof(response.coord.lat));
                 latitude = response.coord.lat;
-                console.log(response.sys.country);
-                console.log(typeof(response.sys.country));
                 code = response.sys.country;
                 $.ajax({
                     url: uvQueryURL + latitude + '&lon=' + longitude,
@@ -38,6 +38,8 @@ $(document).ready(function() {
                 }).then(
                     function(response) {
                         console.log(response);
+                        paragraph = $('<p>').text(`UV Index: ${response.value}`);
+                        $('#top').append(paragraph);
                     }
                 );
         
@@ -51,23 +53,5 @@ $(document).ready(function() {
                 );
             }
         );
-
-        // $.ajax({
-        //     url: uvQueryURL + latitude + '&lon=' + longitude,
-        //     method: 'GET'
-        // }).then(
-        //     function(response) {
-        //         console.log(response);
-        //     }
-        // );
-
-        // $.ajax({
-        //     url: forecastQueryURL + city + ',' + code + APIkey,
-        //     method: 'GET'
-        // }).then(
-        //     function(response) {
-        //         console.log(response);
-        //     }
-        // );
     })
 })
