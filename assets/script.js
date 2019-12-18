@@ -9,6 +9,10 @@ $(document).ready(function() {
     let code;
     let icon;
     let paragraph;
+    let card;
+    let cardBody;
+    let bottomParagraph;
+    let bottomIcon;
 
     $('#search').on('click', function() {
         event.preventDefault();
@@ -20,10 +24,10 @@ $(document).ready(function() {
         }).then(
             function(response) {
                 console.log(response);
-                $('#city-name').text(`${response.name} ${moment().format('MMMM Do YYYY')}`);
+                $('#city-name').text(`${response.name} (${moment().format('MMMM Do YYYY')})`);
                 icon = $('<img>').attr('src', `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`)
                 $('#top').append(icon);
-                paragraph = $('<p>').text(`Temperature: ${response.main.temp} &deg F`);
+                paragraph = $('<p>').text(`Temperature: ${response.main.temp} &#8457`);
                 $('#top').append(paragraph);
                 paragraph = $('<p>').text(`Humidity: ${response.main.humidity} %`);
                 $('#top').append(paragraph);
@@ -44,11 +48,25 @@ $(document).ready(function() {
                 );
         
                 $.ajax({
-                    url: forecastQueryURL + city + ',' + code + APIkey,
+                    url: forecastQueryURL + city + ',' + code + '&units=imperial' + APIkey,
                     method: 'GET'
                 }).then(
                     function(response) {
                         console.log(response);
+                        for (let i = 0; i < 5; i++) {
+                            card = $('<div>').attr('class', 'card');
+                            cardBody = $('<div>').attr('class', 'card-body');
+                            bottomParagraph = $('<p>').text(moment().add((i + 1), 'days').calendar());
+                            cardBody.append(bottomParagraph);
+                            bottomIcon = $('<img>').attr('src', `http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png`);
+                            cardBody.append(bottomIcon);
+                            bottomParagraph = $('<p>').text(`Temp: ${response.list[i].main.temp} &#8457`);
+                            cardBody.append(bottomParagraph);
+                            bottomParagraph = $('<p>').text(`Humidity: ${response.list[i].main.humidity}%`);
+                            cardBody.append(bottomParagraph);
+                            card.append(cardBody);
+                            $('#bottom').append(card);
+                        }
                     }
                 );
             }
