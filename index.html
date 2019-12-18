@@ -12,28 +12,32 @@
 
     <body>
         <header>
-            <h1>Weather Dashboard</h1>
+            <h1 id="title">Weather Dashboard</h1>
         </header>
         
-        <aside>
-            <h3>Search for a city:</h3>
-            <nav class="navbar navbar-light bg-light">
-                <form class="form-inline">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </nav>
-        </aside>
-
-        <main>
-            <div class="jumbotron">
-                <h1 class="display-4"></h1>
-                <p class="lead"></p>
-                <hr class="my-4">
-                <h2>5 Day Forecast: </h2>
-            </div>
+        <main class="container">
+            <section class="row">
+                <aside class="col-sm-4">
+                    <h3>Search for a city:</h3>
+                    <nav class="navbar navbar-light">
+                        <form class="form-inline">
+                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                    </nav>
+                </aside>
+        
+                <article class="col-sm-8">
+                    <div class="jumbotron">
+                        <h1 class="display-4"></h1>
+                        <p class="lead"></p>
+                        <hr class="my-4">
+                        <h2>5 Day Forecast: </h2>
+                    </div>
+                </article>
+            </section>
         </main>
-
+        
         <script type="text/javascript" src="assets/script.js"></script>
     </body>
 </html>
