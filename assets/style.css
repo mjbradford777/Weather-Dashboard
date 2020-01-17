@@ -7,6 +7,12 @@ aside {
     left: -1.5rem;
 }
 
+.button-group {
+    display: block;
+    text-align: center;
+    margin: 0.5rem;
+}
+
 #title {
     text-align: center;
     color: white;

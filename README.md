@@ -3,6 +3,9 @@ permalink: /index.html/
 # Weather-Dashboard, 12/30/19
 ​
 #### By Michael Bradford
+
+## The Link
+https://mjbradford777.github.io/Weather-Dashboard/
 ​
 ## Description
 A basic weather app with small forecast. Will bring up current weather and 5 day forecast for any city.
